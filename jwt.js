@@ -15,6 +15,7 @@
 require('dotenv').config();
 const config = require('config');
 const jsonwebtoken = require('jsonwebtoken');
+const jwtDebugger = require('debug')('app:jwt');
 
 const jwtTesting = async () => {
   const jwt = await jsonwebtoken.sign({ name: 'mahesh' }, 'node-playground');
@@ -29,7 +30,8 @@ const jwtTesting = async () => {
   console.log(process.env.NODE_ENV);
   console.log(process.env.JWT_SECRET_KEY);
   console.log(config.get('name'));
-  console.log(config.get('jwtSecretKey'));
+  console.log(process.env.DEBUG);
+  jwtDebugger(config.get('jwtSecretKey'));
 };
 
 jwtTesting();
