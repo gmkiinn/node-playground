@@ -12,6 +12,8 @@
 // Third part is digital signature. It prevents hacking.
 // It will be generated based on previous tokens data and secret key in server
 
+require('dotenv').config();
+const config = require('config');
 const jsonwebtoken = require('jsonwebtoken');
 
 const jwtTesting = async () => {
@@ -23,6 +25,11 @@ const jwtTesting = async () => {
 
   const sol = jsonwebtoken.decode(jwt, { complete: true });
   console.log(sol);
+
+  console.log(process.env.NODE_ENV);
+  console.log(process.env.JWT_SECRET_KEY);
+  console.log(config.get('name'));
+  console.log(config.get('jwtSecretKey'));
 };
 
 jwtTesting();
